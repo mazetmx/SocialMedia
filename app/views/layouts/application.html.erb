@@ -19,8 +19,13 @@
   </head>
 
   <body>
-    <main class="container">
-      <%= yield %>
-    </main>
+    <div class="flex">
+      <% if user_signed_in? %>
+        <%= render "layouts/sidebar" %>
+      <% end %>
+      <main class="container flex-1">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
