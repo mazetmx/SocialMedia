@@ -1,0 +1,8 @@
+<h1><%= @user.username %>'s profile</h1>
+
+<h2>Followers: <%= @followers.count %></h2>
+<h2>Following: <%= @followees.count %></h2>
+
+<% @posts.each do |post| %>
+  <p><%= post.body %></p>
+<% end %>

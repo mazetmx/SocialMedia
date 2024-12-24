@@ -1,5 +1,9 @@
 <h1>Hello <%= @user.username %></h1>
 
-<% @posts.each do |post| %>
-  <p><%= post.body %></p>
+<% @followers.each do |follower| %>
+  <% follower.posts.each do |post| %>
+    <div>
+      <%= post.body %>
+    </div>
+  <% end %>
 <% end %>

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   authenticated :user do
     root to: "user#index", as: :authenticated_user
+    get "user/" => "user#show", as: :show_user
   end
 
   root "home#index"

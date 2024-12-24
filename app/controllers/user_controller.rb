@@ -3,6 +3,13 @@ class UserController < ApplicationController
 
   def index
     @user = current_user
+    @followers = current_user.followers
+  end
+
+  def show
+    @user = current_user
+    @followers = current_user.followers
+    @followees = current_user.followees
     @posts = current_user.posts
   end
 end
