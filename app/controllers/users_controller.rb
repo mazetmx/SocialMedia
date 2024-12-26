@@ -1,9 +1,10 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
     @user = current_user
     @followers = current_user.followers
+    @followees = current_user.followees
   end
 
   def show

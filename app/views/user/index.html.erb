@@ -1,9 +1,0 @@
-<h1>Hello <%= @user.username %></h1>
-
-<% @followers.each do |follower| %>
-  <% follower.posts.each do |post| %>
-    <div>
-      <%= post.body %>
-    </div>
-  <% end %>
-<% end %>

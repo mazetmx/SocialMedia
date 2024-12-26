@@ -13,8 +13,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
 
   authenticated :user do
-    root to: "user#index", as: :authenticated_user
-    get "user/" => "user#show", as: :show_user
+    root to: "users#index", as: :authenticated_user
+    get "users/" => "users#show", as: :show_user
+    resources :users do
+      resources :posts
+    end
   end
 
   root "home#index"

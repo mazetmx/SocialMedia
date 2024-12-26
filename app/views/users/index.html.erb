@@ -1,0 +1,12 @@
+<h1>Hello <%= @user.username %></h1>
+
+<h2>Add a post</h2>
+<%= render "posts/form", user: @user %>
+
+<% @followees.each do |followee| %>
+  <% followee.posts.each do |post| %>
+    <div>
+      <%= post.body %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,9 @@
+<h1><%= @user.username %>'s profile</h1>
+
+<h2>Followers: <%= @followers.count %></h2>
+<h2>Following: <%= @followees.count %></h2>
+
+<% @posts.each do |post| %>
+  <p><%= post.body %> <%= post.created_at.to_fs(:long) %></p>
+  <%= link_to "Delete Post", [post.user, post], data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% end %>
