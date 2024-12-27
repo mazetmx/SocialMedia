@@ -1,9 +1,41 @@
-<h1><%= @user.username %>'s profile</h1>
+<div>
+  <div class="flex flex-col border-b border-slate-950 px-4 py-2">
+    <div>
+      <h1 class="text-3xl font-bold"><%= @user.username %></h1>
+    </div>
 
-<h2>Followers: <%= @followers.count %></h2>
-<h2>Following: <%= @followees.count %></h2>
+    <div class="flex">
+      <h2 class="pr-10">Followers: <%= @followers.count %></h2>
+      <h2>Following: <%= @followees.count %></h2>
+    </div>
+  </div>
 
-<% @posts.each do |post| %>
-  <p><%= post.body %> <%= post.created_at.to_fs(:long) %></p>
-  <%= link_to "Delete Post", [post.user, post], data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-<% end %>
+  <% @posts.reverse.each do |post| %>
+    <div class="flex flex-col border-b border-slate-950 px-4 py-2">
+      <div class="flex justify-between">
+        <div>
+          <strong><%= @user.username %></strong> . <%= post.created_at.to_fs(:long) %>
+        </div>
+        <div class="rounded-full hover:bg-slate-950 hover:text-white">
+          <%= link_to [post.user, post], data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+            <%= icon('fa-solid', 'trash', class: "px-2") %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <p><%= post.body %></p>
+      </div>
+      <div class="flex space-x-20">
+        <%= link_to do %>
+          <%= icon('fa-regular', 'heart') %>
+        <% end %>
+        <%= link_to do %>
+          <%= icon('fa-regular', 'comment') %>
+        <% end %>
+        <%= link_to do %>
+          <%= icon('fa-solid', 'retweet') %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
