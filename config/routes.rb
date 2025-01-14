@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   authenticated :user do
     root to: "users#index", as: :authenticated_user
     get "users/" => "users#show", as: :show_user
+    get "follow", to: "followings#create", as: :follow_user
+    delete "unfollow", to: "followings#destroy", as: :unfollow_user
     resources :users do
       resources :posts
     end
