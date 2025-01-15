@@ -23,4 +23,15 @@ class UsersController < ApplicationController
       @posts = current_user.posts
     end
   end
+
+  def search
+    if params[:query].present?
+      @user = User.find_by(username: params[:query])
+      if @user
+        redirect_to user_path(@user)
+      end
+    else
+      redirect_to root_path
+    end
+  end
 end

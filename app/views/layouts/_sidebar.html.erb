@@ -3,10 +3,15 @@
     <%= link_to root_path, class: "block text-white text-2xl font-bold hover:bg-sky-900" do %>
       <%= icon('fa-solid', 'home', class: "mr-2 py-2 px-4") %>Home
     <% end %>
-      <%= link_to root_path, class: "block text-white text-2xl font-bold hover:bg-sky-900" do %>
+    <%= link_to nil, class: "block text-white text-2xl font-bold hover:bg-sky-900", onclick: "toggleVisibility(); return false;", id: "show-search" do %>
       <%= icon('fa-solid', 'magnifying-glass', class: "mr-2 py-2 px-4") %>Explore
     <% end %>
-    <%= link_to show_user_path, class: "block text-white text-2xl font-bold hover:bg-sky-900" do %>
+    <div style="display: none;" id="search-form">
+      <%= form_with url: search_user_path, method: :get, class: "block text-2xl font-bold hover:bg-sky-900" do %>
+        <%= text_field_tag :query, params[:query], placeholder: "Search...", id: "search-field" %>
+      <% end %>
+    </div>
+    <%= link_to show_user_path(current_user), class: "block text-white text-2xl font-bold hover:bg-sky-900" do %>
       <%= icon('fa-solid', 'circle-user', class: "mr-2 py-2 px-4") %>Profile
     <% end %>
     <%= link_to destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "block text-white text-2xl font-bold hover:bg-sky-900" do %>
@@ -14,3 +19,15 @@
     <% end %>
   </nav>
 </div>
+
+<script>
+  function toggleVisibility() {
+    button = document.getElementById("show-search");
+    searchForm = document.getElementById("search-form");
+    searchField = document.getElementById("search-field");
+
+    button.style.display = "none";
+    searchForm.style.display = "block";
+    searchField.focus();
+  }
+</script>
