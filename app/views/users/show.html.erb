@@ -1,4 +1,3 @@
-
 <div>
   <div class="flex flex-col border-b border-slate-950 px-4 py-2">
     <div class="flex justify-between">
@@ -36,8 +35,14 @@
         <p><%= post.body %></p>
       </div>
       <div class="flex space-x-20">
-        <%= link_to do %>
-          <%= icon('fa-regular', 'heart') %>
+        <% if current_user.liked_posts.include?(post) %>
+          <%= link_to unlike_user_post_path(post.user, post), data: {turbo_method: :delete} do %>
+            <%= icon('fa-solid', 'heart') %>
+          <% end %>
+        <% else %>
+          <%= link_to like_user_post_path(post.user, post), data: {turbo_method: :post} do %>
+            <%= icon('fa-regular', 'heart') %>
+          <% end %>
         <% end %>
         <%= link_to do %>
           <%= icon('fa-regular', 'comment') %>

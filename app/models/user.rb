@@ -11,4 +11,7 @@ class User < ApplicationRecord
 
   has_many :followed_users, foreign_key: :follower_id, class_name: "Following"
   has_many :followees, through: :followed_users
+
+  has_many :likes
+  has_many :liked_posts, through: :likes, source: :post
 end

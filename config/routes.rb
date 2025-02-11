@@ -19,7 +19,12 @@ Rails.application.routes.draw do
     get "follow", to: "followings#create", as: :follow_user
     delete "unfollow", to: "followings#destroy", as: :unfollow_user
     resources :users do
-      resources :posts
+      resources :posts do
+        member do
+          post "like", to: "posts#like"
+          delete "unlike", to: "posts#unlike"
+        end
+      end
     end
   end
 

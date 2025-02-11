@@ -12,6 +12,20 @@ class PostsController < ApplicationController
     redirect_to 
   end
 
+  def like
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:id])
+    current_user.liked_posts << @post
+    redirect_to
+  end
+
+  def unlike
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:id])
+    current_user.liked_posts.destroy(@post)
+    redirect_to
+  end
+
   private
   def post_params
     params.require(:post).permit(:body)
